@@ -19,8 +19,8 @@
   <!-- By default, calibrations are stored to file://${ROS_HOME}/camera_info/${NAME}.yaml,
        where ${NAME} is of the form "[rgb|depth]_[serial#]", e.g. "depth_B00367707227042B".
        See camera_info_manager docs for calibration URL details. -->
-  <arg name="rgb_camera_info_url"   default="file://$(find astrapro_launch)/config/camera.yaml" />
-  <arg name="depth_camera_info_url" default="file://$(find astrapro_launch)/config/depth.yaml" />
+  <arg name="rgb_camera_info_url"   default="file://$(find astrapro_launch)/config/camera_320.yaml" />
+  <arg name="depth_camera_info_url" default="file://$(find astrapro_launch)/config/depth_320.yaml" />
   
   <!-- Hardware depth registration -->
   <arg name="depth_registration" default="true" />
@@ -133,11 +133,9 @@
     </include>
 
   </group> <!-- camera -->
-
   <!-- Load reasonable defaults for the relative pose between cameras -->
   <include if="$(arg publish_tf)"
-	   file="$(find astra_camera)/launch/includes/astra_frames.launch">
+	   file="$(find astrapro_launch)/launch/includes/astra_frames.launch.xml">
     <arg name="camera" value="$(arg camera)" />
   </include>
-
 </launch>
